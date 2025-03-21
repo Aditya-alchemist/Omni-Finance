@@ -20,7 +20,7 @@ contract Staking {
     uint256 public precision = 1e18;
 
     
-    function stake(uint256 _days) public payable {
+    function stake(uint256 _days)  public  payable {
         if (msg.value <= 0) revert AMOUNT_MUST_BE_GREATER_THAN_ZERO();
         if (_days <= 0) revert STAKING_DAYS_MUST_BE_GREATER_THAN_ZERO();
 
@@ -72,6 +72,24 @@ contract Staking {
 
         uint256 totalInterest = (principal * (multiplier - precision)) / precision;
         return totalInterest;
+    }
+
+    function Attheendinterestgenrated() public view returns (uint256 totalInterest,uint256 totalAmount) {
+        StakeInfo storage Stakeinformation = stakes[msg.sender];
+        uint256 principal = Stakeinformation.amount;
+      
+
+        uint256 dailyRate = (interest_rate * precision) / (365 * precision);
+        uint256 multiplier = precision;
+
+        for (uint256 i = 0; i < Stakeinformation.stakingDays; i++) {
+            multiplier = (multiplier * (precision + dailyRate)) / precision;
+        }
+
+        uint256 totalInterest = (principal * (multiplier - precision)) / precision;
+        uint256 totalAmount = (principal * (multiplier)) / precision;
+        return (totalInterest, totalAmount);
+        
     }
 
     
