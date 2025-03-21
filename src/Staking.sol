@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-contract Staking {
+contract OmniFinance {
 
     struct StakeInfo {
         uint256 amount;
@@ -9,11 +9,18 @@ contract Staking {
         uint256 stakingDays;
     }
 
+    struct Lendinfo{
+        uint256 amount;
+        bool borrowed;
+        uint256 totalinterestearned;
+    }
+
     error AMOUNT_MUST_BE_GREATER_THAN_ZERO();
     error STAKING_DAYS_MUST_BE_GREATER_THAN_ZERO();
     error NO_ACTIVE_STAKE();
     error TRANSACTION_FAILED();
-
+    
+    mapping (address => Lendinfo) public lender;
     mapping(address => StakeInfo) public stakes;
 
     uint256 public interest_rate = 5e16; 
@@ -112,5 +119,15 @@ contract Staking {
         if (!success) revert TRANSACTION_FAILED();
 
         delete stakes[msg.sender];  
+    }
+
+    function lend() public payable {
+        if(msg.value<=0){
+            revert AMOUNT_MUST_BE_GREATER_THAN_ZERO();
+        }
+        Lendinfo storage lending= lender[msg.sender];
+        
+        lending.amount+=msg.value;
+
     }
 }
