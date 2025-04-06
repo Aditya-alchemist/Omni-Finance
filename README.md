@@ -212,4 +212,4 @@ function liquidate(address borrower, address daiAddress) public onlyOwner;
 
 ---
 
-This version ensures the formulas are correctly displayed in your **GitHub README** without LaTeX formatting issues. 🚀
+This is not audited so dont use it in production. 🚀
