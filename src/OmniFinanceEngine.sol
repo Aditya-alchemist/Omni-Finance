@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
  
 
- //deployed at 0xfc19e457f20ba3da15ac8fa4718ee284b74059ba
+ //deployed at 0xeacc4b2AcFADC31050690DEb11E6c3b652505Df1
 contract OmniFinance is ReentrancyGuard, Ownable {
     struct StakeInfo {
         uint256 amount;
