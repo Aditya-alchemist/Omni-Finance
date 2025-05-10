@@ -84,7 +84,7 @@ Where:
 ## 📜 **Smart Contract Details**  
 
 ### ✅ **Contract Address**  
-📍 **Deployed on Sepolia:** `0xfc19e457f20ba3da15ac8fa4718ee284b74059ba`  
+📍 **Deployed on Sepolia:** `0xeacc4b2AcFADC31050690DEb11E6c3b652505Df1`  
 
 ### ✅ **Key Constants**  
 | Parameter  | Value  | Description  |
